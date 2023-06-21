@@ -15,6 +15,7 @@ fn ()
     import C.stdio
 
     renderer-info := (bottle.gpu.get-info)
+    C.stdio.printf f""""gun game version: ${VERSION}
     C.stdio.printf f""""bottle version: ${(bottle.get-version)}
     C.stdio.printf f""""${(imply renderer-info.RendererString String)}
     ()
