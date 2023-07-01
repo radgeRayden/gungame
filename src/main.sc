@@ -1,5 +1,6 @@
 import bottle
 import radl.version-string
+using import print
 using import radl.strfmt
 using import String
 
@@ -15,9 +16,10 @@ fn ()
     import C.stdio
 
     renderer-info := (bottle.gpu.get-info)
-    C.stdio.printf f""""gun game version: ${VERSION}
-    C.stdio.printf f""""bottle version: ${(bottle.get-version)}
-    C.stdio.printf f""""${(imply renderer-info.RendererString String)}
+    print f"gun game version: ${VERSION}"
+    print f"bottle version: ${(bottle.get-version)}"
+    print renderer-info.APIString
+    print renderer-info.GPUString
     ()
 
 @@ 'on bottle.key-pressed

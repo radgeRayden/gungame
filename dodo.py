@@ -1,6 +1,6 @@
 from doit.tools import LongRunning
 
-DOIT_CONFIG = {'default_tasks': ['run_game', "build"], 'verbosity': 2}
+DOIT_CONFIG = {'default_tasks': ['update_bottle', 'run_game', "build"], 'verbosity': 2}
 
 def cmd(cmd):
     return f"bash -c \"{cmd}\""
