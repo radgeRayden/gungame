@@ -1,6 +1,7 @@
+import platform
 from doit.tools import LongRunning
 
-DOIT_CONFIG = {'default_tasks': ['run_game', "build"], 'verbosity': 2}
+DOIT_CONFIG = {'default_tasks': ['update_bottle', 'run_game', "build"], 'verbosity': 2}
 
 def cmd(cmd):
     return f"bash -c \"{cmd}\""
@@ -21,7 +22,7 @@ def task_update_bottle():
 
 def task_run_game():
     return {
-        'actions': [LongRunning("scopes -e -m .src.main")],
+        'actions': [LongRunning(cmd("scopes -e -m .src.main"))],
         'uptodate': [False],
         'file_dep': [bottle_dep]
     }
