@@ -15,9 +15,10 @@ fn (cfg)
 
 @@ 'on bottle.load
 fn ()
-    renderer-info := (bottle.gpu.get-info)
     print f"gun game version: ${VERSION}"
-    print f"bottle version: ${VERSION}"
+    print f"bottle version: ${(bottle.get-version)}"
+
+    renderer-info := (bottle.gpu.get-info)
     print renderer-info.APIString
     print renderer-info.GPUString
 
