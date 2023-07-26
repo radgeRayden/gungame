@@ -1,0 +1,9 @@
+set-root "assets/sprites"
+atlas
+    path = "characters.png"
+    aspect = grid
+    columns = 7
+    rows = 4
+
+atlas
+    path = "tileset.png"
