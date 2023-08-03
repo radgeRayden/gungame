@@ -1,6 +1,7 @@
 using import Array enum Map print Rc String struct
 import bottle
 using bottle.types
+from bottle.plonk let SpriteAtlas
 
 enum AtlasAspect plain
     Grid
@@ -48,12 +49,6 @@ fn load-asset-metadata ()
         assert false "unable to load asset metadata"
     asset-metadata
 
-struct SpriteAtlas
-    aspect : AtlasAspect
-    columns : i32
-    rows : i32
-    texture : Texture
-
 struct GameResources
     sprite-sheets : (Map String (Rc SpriteAtlas))
 
@@ -63,14 +58,11 @@ fn load-atlas (metadata)
     fullpath := current-root .. "/" .. metadata.path
     try
         imgdata := bottle.asset.load-image fullpath
-        texture := Texture imgdata
         'set game-resources.sprite-sheets fullpath
             Rc.wrap
-                SpriteAtlas
-                    copy metadata.aspect
+                SpriteAtlas imgdata
                     copy metadata.columns
                     copy metadata.rows
-                    texture
     else (print "unable to load sprite atlas:" fullpath)
 
 # this looks unnecessarily "decoupled", I plan to expand this stuff later and it doesn't make things

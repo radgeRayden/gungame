@@ -1,17 +1,16 @@
 import radl.version-string
-VERSION := (radl.version-string.git-version)
+VERSION := (radl.version-string.git-version) as string
 run-stage;
 
 using import radl.strfmt
 using import glm print String struct
 import bottle
-import .assets
+using import .assets
 
 @@ 'on bottle.configure
 fn (cfg)
     cfg.window.title = f"gun game (${VERSION})"
     cfg.gpu.msaa-samples = 4
-    # cfg.filesystem.root = ".."
 
 @@ 'on bottle.load
 fn ()
@@ -22,7 +21,7 @@ fn ()
     print renderer-info.APIString
     print renderer-info.GPUString
 
-    assets.load-all-resources;
+    load-all-resources;
     ()
 
 @@ 'on bottle.key-pressed
